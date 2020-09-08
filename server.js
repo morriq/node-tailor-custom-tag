@@ -13,9 +13,9 @@ const tailor = new Tailor({
     const dependencies = new Map([
       [
         'recommendations',
-        require('recommendations')({
+        require('recommendations')(() => ({
           recommendationsEndpoint: '0://',
-        }),
+        })),
       ],
     ]);
     const dependency = dependencies.get(tag.attributes.dependency);
