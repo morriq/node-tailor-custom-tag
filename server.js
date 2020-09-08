@@ -1,6 +1,6 @@
 const http = require('http');
 const Tailor = require('node-tailor');
-const processTemplate = require('node-tailor/lib/process-template');
+const RewritingStream = require('parse5-html-rewriting-stream');
 
 const tailor = new Tailor({
   templatesPath: __dirname + '/index.html',
@@ -19,18 +19,14 @@ const tailor = new Tailor({
       ],
     ]);
     const dependency = dependencies.get(tag.attributes.dependency);
+    const rewriter = new RewritingStream();
 
     dependency().then((markup) => {
-      options.parseTemplate(markup, null, false).then((parsedTemplate) => {
-        parsedTemplate.forEach((item) => {
-          st.write(item);
-        });
-        st.end();
-      });
+      rewriter.emitRaw(markup);
+      rewriter.end();
     });
-    const st = processTemplate(request, options, context);
 
-    return st;
+    return rewriter;
   },
 });
 

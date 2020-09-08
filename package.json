@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "node-tailor": "^3.9.2",
+    "parse5-html-rewriting-stream": "6.0.1",
     "recommendations": "file:packages/recommendations"
   },
   "devDependencies": {
