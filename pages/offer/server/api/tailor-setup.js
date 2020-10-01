@@ -5,7 +5,7 @@ const libraries = require('../libraries');
 
 module.exports = {
     fetchTemplate(request, parseTemplate) {
-        return parseTemplate(readFileSync(resolve(resolve(__dirname, '../../app/dist/index.html', 'utf-8'))));
+        return parseTemplate(readFileSync(resolve(__dirname, '../../app/dist/index.html'), 'utf-8'));
     },
     handledTags: ['library'],
     handleTag: (request, tag, options, context) => {

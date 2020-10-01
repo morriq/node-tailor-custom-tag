@@ -13,6 +13,7 @@ class Library extends RewritingStream {
 
     render(request) {
         const renderFn = this.package(() => this.passToPackage(request));
+
         renderFn()
             .then(markup => {
                 this.emitRaw(markup);

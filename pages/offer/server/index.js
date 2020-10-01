@@ -11,7 +11,7 @@ const appRoot = express();
 
 appRoot
     .use('/', express.static(resolve(__dirname, '../app/dist'), { index: false }))
-    .use(webpackMiddleware)
+    // .use(webpackMiddleware)
     .get('/', requestHandler)
     .listen(8080, function () {
         console.log('Tailor server listening on port 8080');
