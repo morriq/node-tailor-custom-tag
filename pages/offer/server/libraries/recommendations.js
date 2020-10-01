@@ -1,7 +1,7 @@
 const { Library } = require('../api/library');
 
 class Recommendations extends Library {
-    package = require('recommendations');
+    static Package = require('recommendations');
 
     setup() {
         return {
