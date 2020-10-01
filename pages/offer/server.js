@@ -1,6 +1,7 @@
 const http = require('http');
 const Tailor = require('node-tailor');
-const RewritingStream = require('parse5-html-rewriting-stream');
+
+const libraries = require('./libraries');
 
 const tailor = new Tailor({
   templatesPath: __dirname + '/index.html',
@@ -10,23 +11,13 @@ const tailor = new Tailor({
       return '';
     }
 
-    const dependencies = new Map([
-      [
-        'recommendations',
-        require('recommendations')(() => ({
-          recommendationsEndpoint: '0://',
-        })),
-      ],
-    ]);
-    const dependency = dependencies.get(tag.attributes.dependency);
-    const rewriter = new RewritingStream();
+    // integration test
+    // https://stackoverflow.com/questions/53975046/node-js-pipe-a-stream-out-of-a-forked-child-process
+    // client bundle definicja
 
-    dependency().then((markup) => {
-      rewriter.emitRaw(markup);
-      rewriter.end();
-    });
+    const dependency = libraries.get(tag.attributes.dependency);
 
-    return rewriter;
+    return dependency.render();
   },
 });
 

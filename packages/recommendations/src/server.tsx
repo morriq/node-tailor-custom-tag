@@ -1,5 +1,5 @@
 import React from 'react';
-import { renderToNodeStream } from 'react-dom/server';
+import { renderToString } from 'react-dom/server';
 
 import StateContext from './contexts/StateContext';
 import App from './App';
@@ -14,7 +14,7 @@ export default (setup) => async () => {
         asyncSomething([1, 23, 4], 100),
     ]).then(([user, numbers]) => ({ user, numbers }));
 
-    return renderToNodeStream(
+    return renderToString(
         <StateContext.Provider value={state}>
             <div id='app'>
                 <App />
