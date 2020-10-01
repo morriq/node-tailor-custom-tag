@@ -1,7 +1,9 @@
 const RewritingStream = require('parse5-html-rewriting-stream');
 
 class Library extends RewritingStream {
-    consul = () => 'http://endpoint-to-service';
+    consul = {
+        select: () => 'endpoint'
+    }
 
     package = null;
 

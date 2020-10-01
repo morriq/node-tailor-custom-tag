@@ -5,7 +5,7 @@ class Recommendations extends Library {
 
     setup() {
         return {
-            recommendationsEndpoint: this.consul()
+            recommendationsEndpoint: this.consul.select('SOME_ENDPOINT')
         }
     }
 }
