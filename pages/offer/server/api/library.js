@@ -7,15 +7,19 @@ class Library extends RewritingStream {
 
     package = null;
 
-    setup(request) {
+    passToPackage(request) {
         return {}
     }
 
     render(request) {
-        const renderFn = this.package(() => this.setup(request));
+        const renderFn = this.package(() => this.passToPackage(request));
         renderFn()
             .then(markup => {
                 this.emitRaw(markup);
+                this.end();
+            })
+            .catch(error => {
+                console.log(error);
                 this.end();
             });
 

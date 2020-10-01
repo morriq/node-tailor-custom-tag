@@ -7,6 +7,8 @@ import App from './App';
 export default function bootstrapApplication() {
   const preloadedState = window.__PRELOADED_STATE__;
 
+  console.log(preloadedState);
+
   hydrate(
     <StateContext.Provider value={preloadedState}>
       <App />

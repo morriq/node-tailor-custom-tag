@@ -12,10 +12,10 @@ module.exports = {
 
         // @TODO integration test
         // @TODO https://stackoverflow.com/questions/53975046/node-js-pipe-a-stream-out-of-a-forked-child-process
-        // @TODO client bundle definicja - nie ma czesci clienta? offer bierze dist/server.js i wciaga w swoje entrypointy?
         // @TODO CZESC SERWEROWA PACZEK - ODSWIEZANIE W DEVMODE, devmiddleware i hot
+        // @todo czesc kliencka babel runtime, externals zeby reacta nie ladowawc
 
-        const dependency = libraries.get(tag.attributes.dependency);
+        const dependency = libraries.get(tag.attributes.dependency)();
 
         return dependency.render(request);
     },
