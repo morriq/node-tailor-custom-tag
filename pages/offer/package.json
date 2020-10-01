@@ -4,17 +4,22 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server"
+    "start": "nodemon server",
+    "build": "webpack --config app/webpack.config.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "4.17.1",
     "node-tailor": "^3.9.2",
     "parse5-html-rewriting-stream": "6.0.1",
     "recommendations": "file:../../packages/recommendations"
   },
   "devDependencies": {
-    "nodemon": "2.0.4"
+    "html-webpack-plugin": "4.5.0",
+    "nodemon": "2.0.4",
+    "webpack": "4.44.2",
+    "webpack-cli": "3.3.12"
   }
 }

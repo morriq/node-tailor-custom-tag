@@ -1,9 +1,9 @@
 const { Library } = require('../api/library');
 
 class Recommendations extends Library {
-    static Package = require('recommendations');
+    package = require('recommendations');
 
-    setup() {
+    setup(request) {
         return {
             recommendationsEndpoint: this.consul.select('SOME_ENDPOINT')
         }

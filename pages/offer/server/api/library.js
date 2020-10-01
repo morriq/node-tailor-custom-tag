@@ -1,18 +1,18 @@
 const RewritingStream = require('parse5-html-rewriting-stream');
 
 class Library extends RewritingStream {
-    static Package = null;
-
     consul = {
         select: () => 'endpoint'
     }
 
-    setup() {
+    package = null;
+
+    setup(request) {
         return {}
     }
 
-    render() {
-        const renderFn = this.constructor.Package(() => this.setup());
+    render(request) {
+        const renderFn = this.package(() => this.setup(request));
         renderFn()
             .then(markup => {
                 this.emitRaw(markup);
