@@ -11,9 +11,10 @@ const tailor = new Tailor({
       return '';
     }
 
-    // integration test
-    // https://stackoverflow.com/questions/53975046/node-js-pipe-a-stream-out-of-a-forked-child-process
-    // client bundle definicja
+    // @TODO integration test
+    // @TODO https://stackoverflow.com/questions/53975046/node-js-pipe-a-stream-out-of-a-forked-child-process
+    // @TODO client bundle definicja - nie ma czesci clienta? offer bierze dist/server.js i wciaga w swoje entrypointy?
+      // @TODO CZESC SERWEROWA PACZEK - ODSWIEZANIE W DEVMODE
 
     const dependency = libraries.get(tag.attributes.dependency);
 
