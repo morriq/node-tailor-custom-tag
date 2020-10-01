@@ -1,10 +1,11 @@
 const http = require('http');
+const { resolve } = require('path');
 const Tailor = require('node-tailor');
 
 const libraries = require('./libraries');
 
 const tailor = new Tailor({
-  templatesPath: __dirname + '/index.html',
+  templatesPath: resolve(process.cwd(), 'src/index.html'),
   handledTags: ['library'],
   handleTag: (request, tag, options, context) => {
     if (!tag || tag.name !== 'library') {
