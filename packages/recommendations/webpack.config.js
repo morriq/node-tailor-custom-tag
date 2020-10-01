@@ -36,8 +36,6 @@ module.exports = () => {
       filename: 'client.js',
       libraryExport: 'default',
       libraryTarget: 'umd',
-      umdNamedDefine: true,
-      library: 'mainPage',
     },
   };
 

@@ -3,6 +3,7 @@ const express = require('express');
 const { resolve } = require('path');
 
 const tailorSetup = require('./api/tailor-setup');
+const webpackMiddleware = require('./webpack-middleware');
 
 const { requestHandler } = new Tailor(tailorSetup);
 
@@ -10,6 +11,7 @@ const appRoot = express();
 
 appRoot
     .use('/', express.static(resolve(__dirname, '../app/dist'), { index: false }))
+    .use(webpackMiddleware)
     .get('/', requestHandler)
     .listen(8080, function () {
         console.log('Tailor server listening on port 8080');

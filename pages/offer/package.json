@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon server",
+    "start": "nodemon server --watch server",
     "build": "webpack --config app/webpack.config.js"
   },
   "keywords": [],
@@ -20,6 +20,8 @@
     "html-webpack-plugin": "4.5.0",
     "nodemon": "2.0.4",
     "webpack": "4.44.2",
-    "webpack-cli": "3.3.12"
+    "webpack-cli": "3.3.12",
+    "webpack-dev-middleware": "3.7.2",
+    "webpack-hot-middleware": "2.25.0"
   }
 }
