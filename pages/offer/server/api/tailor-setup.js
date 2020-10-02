@@ -5,41 +5,50 @@ const workerFarm = require('worker-farm');
 
 const render = workerFarm(require.resolve('./render'));
 
-module.exports = {
-    fetchTemplate(request, parseTemplate) {
-        return parseTemplate(readFileSync(resolve(__dirname, '../../app/dist/index.html'), 'utf-8'));
-    },
-    handledTags: ['library'],
-    handleTag: (request, tag, options, context) => {
-        if (!tag || tag.name !== 'library') {
-            return '';
-        }
+const loadTemplate = () => readFileSync(resolve(__dirname, '../../app/dist/index.html'), 'utf-8');
 
-        // next step fetchtemplate prod
-        // next steps: DODANIE FRAGMENTU Z REQUESTEM JAKIMS Z API LOKALNEGO
-        // npm start z node_env production
-        // NEXT GATLING
+const templateResolver = ({ isTemplateCached }) => {
+    let template = isTemplateCached ? loadTemplate() : '';
 
-        // index.html jest nadpisywany przez webpacka bo jest zdefiniowany w webpackclient
-        // @todo jesli jest devmode to webpackdevmiddleware
-        // @TODO integration test
-        // @todo czesc kliencka babel runtime, externals zeby reacta nie ladowawc
-        // @todo przekazywanie do rendera czesci z requesta, obsluga errorw
-        // @todo pactio
+    return (request, parseTemplate) => {
+        return parseTemplate(template ? template : loadTemplate());
+    };
+}
 
-        const stream = new RewritingStream();
-        const library = tag.attributes.dependency;
-
-        render(library, (error, output) => {
-            if (output) {
-                stream.emitRaw(output);
+module.exports = ({ isTemplateCached }) => {
+    return {
+        fetchTemplate: templateResolver({ isTemplateCached }),
+        handledTags: ['library'],
+        handleTag: (request, tag, options, context) => {
+            if (!tag || tag.name !== 'library') {
+                return '';
             }
-            if (error) {
-                console.log(error);
-            }
-            stream.end();
-        });
 
-        return stream;
-    },
-};
+            // next steps: DODANIE FRAGMENTU Z REQUESTEM JAKIMS Z API LOKALNEGO
+            // npm start z node_env production
+            // NEXT GATLING
+
+            // index.html jest nadpisywany przez webpacka bo jest zdefiniowany w webpackclient
+            // @todo jesli jest devmode to webpackdevmiddleware
+            // @TODO integration test
+            // @todo czesc kliencka babel runtime, externals zeby reacta nie ladowawc
+            // @todo przekazywanie do rendera czesci z requesta, obsluga errorw
+            // @todo pactio
+
+            const stream = new RewritingStream();
+            const library = tag.attributes.dependency;
+
+            render(library, (error, output) => {
+                if (output) {
+                    stream.emitRaw(output);
+                }
+                if (error) {
+                    console.log(error);
+                }
+                stream.end();
+            });
+
+            return stream;
+        },
+    };
+}
