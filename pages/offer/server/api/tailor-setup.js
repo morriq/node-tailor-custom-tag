@@ -19,6 +19,7 @@ module.exports = {
         // @todo jesli jest devmode to webpackdevmiddleware i fetchTemplate (tutaj issue na benchmark czy nie trzeba cacheowac produkcyjnie)
         // @TODO integration test
         // @todo czesc kliencka babel runtime, externals zeby reacta nie ladowawc
+        // @todo przekazywanie do rendera czesci z requesta, obsluga errorw
 
         const stream = new RewritingStream();
         const library = tag.attributes.dependency;
