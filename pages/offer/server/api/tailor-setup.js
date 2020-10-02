@@ -15,6 +15,8 @@ module.exports = {
             return '';
         }
 
+        // next steps: GATLING
+
         // index.html jest nadpisywany przez webpacka bo jest zdefiniowany w webpackclient
         // @todo jesli jest devmode to webpackdevmiddleware i fetchTemplate (tutaj issue na benchmark czy nie trzeba cacheowac produkcyjnie)
         // @TODO integration test
