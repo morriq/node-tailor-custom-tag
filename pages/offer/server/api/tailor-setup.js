@@ -15,10 +15,13 @@ module.exports = {
             return '';
         }
 
-        // next steps: GATLING
+        // npm start z node_env production
+        // next step fetchtemplate prod
+        // next steps: DODANIE FRAGMENTU Z REQUESTEM JAKIMS Z API LOKALNEGO
+        // NEXT GATLING
 
         // index.html jest nadpisywany przez webpacka bo jest zdefiniowany w webpackclient
-        // @todo jesli jest devmode to webpackdevmiddleware i fetchTemplate (tutaj issue na benchmark czy nie trzeba cacheowac produkcyjnie)
+        // @todo jesli jest devmode to webpackdevmiddleware
         // @TODO integration test
         // @todo czesc kliencka babel runtime, externals zeby reacta nie ladowawc
         // @todo przekazywanie do rendera czesci z requesta, obsluga errorw
