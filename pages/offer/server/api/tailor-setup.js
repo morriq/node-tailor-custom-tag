@@ -1,8 +1,9 @@
 const { resolve } = require('path');
 const { readFileSync } = require('fs');
-const { start, job, stop } = require("microjob");
+const RewritingStream = require('parse5-html-rewriting-stream');
+const workerFarm = require('worker-farm');
 
-const libraries = require('../libraries');
+const render = workerFarm(require.resolve('./render'));
 
 module.exports = {
     fetchTemplate(request, parseTemplate) {
@@ -19,8 +20,14 @@ module.exports = {
         // @TODO integration test
         // @todo czesc kliencka babel runtime, externals zeby reacta nie ladowawc
 
-        const dependency = libraries.get(tag.attributes.dependency)();
+        const stream = new RewritingStream();
+        const library = tag.attributes.dependency;
 
-        return dependency.render(request);
+        render(library, (error, output) => {
+            stream.emitRaw(output);
+            stream.end();
+        });
+
+        return stream;
     },
 };

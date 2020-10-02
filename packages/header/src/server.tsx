@@ -16,7 +16,7 @@ export default (setup) => async () => {
 
     return renderToString(
         <StateContext.Provider value={state}>
-            <div id='app'>
+            <div id='header'>
                 <App />
             </div>
             <script

@@ -1,6 +1,5 @@
-const RewritingStream = require('parse5-html-rewriting-stream');
 
-class Library extends RewritingStream {
+class Library {
     consul = {
         select: () => 'endpoint'
     }
@@ -14,17 +13,7 @@ class Library extends RewritingStream {
     render(request) {
         const renderFn = this.package(() => this.passToPackage(request));
 
-        renderFn()
-            .then(markup => {
-                this.emitRaw(markup);
-                this.end();
-            })
-            .catch(error => {
-                console.log(error);
-                this.end();
-            });
-
-        return this;
+        return renderFn();
     }
 }
 

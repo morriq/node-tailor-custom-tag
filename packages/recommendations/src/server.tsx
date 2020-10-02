@@ -9,6 +9,7 @@ const asyncSomething = (response, timeout) =>
 
 export default (setup) => async () => {
     const { recommendationsEndpoint } = setup();
+
     const state = await Promise.all([
         asyncSomething({ name: 'John' }, 1000),
         asyncSomething([1, 23, 4], 100),
@@ -16,7 +17,7 @@ export default (setup) => async () => {
 
     return renderToString(
         <StateContext.Provider value={state}>
-            <div id='app'>
+            <div id='rec'>
                 <App />
             </div>
             <script

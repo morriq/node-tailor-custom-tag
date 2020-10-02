@@ -13,7 +13,7 @@ export default function bootstrapApplication() {
     <StateContext.Provider value={preloadedState}>
       <App />
     </StateContext.Provider>,
-    document.querySelector('#app')
+    document.querySelector('#rec')
   );
 
   delete window.__PRELOADED_STATE__;
