@@ -15,9 +15,9 @@ module.exports = {
             return '';
         }
 
-        // npm start z node_env production
         // next step fetchtemplate prod
         // next steps: DODANIE FRAGMENTU Z REQUESTEM JAKIMS Z API LOKALNEGO
+        // npm start z node_env production
         // NEXT GATLING
 
         // index.html jest nadpisywany przez webpacka bo jest zdefiniowany w webpackclient
@@ -31,7 +31,12 @@ module.exports = {
         const library = tag.attributes.dependency;
 
         render(library, (error, output) => {
-            stream.emitRaw(output);
+            if (output) {
+                stream.emitRaw(output);
+            }
+            if (error) {
+                console.log(error);
+            }
             stream.end();
         });
 
