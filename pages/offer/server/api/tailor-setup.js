@@ -20,6 +20,7 @@ module.exports = {
         // @TODO integration test
         // @todo czesc kliencka babel runtime, externals zeby reacta nie ladowawc
         // @todo przekazywanie do rendera czesci z requesta, obsluga errorw
+        // @todo pactio
 
         const stream = new RewritingStream();
         const library = tag.attributes.dependency;
