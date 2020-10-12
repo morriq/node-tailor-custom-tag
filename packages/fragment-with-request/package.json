@@ -1,0 +1,17 @@
+{
+  "name": "offers",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "0.20.0",
+    "cross-env": "7.0.2",
+    "express": "4.17.1"
+  }
+}
