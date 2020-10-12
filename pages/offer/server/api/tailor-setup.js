@@ -24,7 +24,6 @@ module.exports = ({ isTemplateCached }) => {
                 return '';
             }
 
-            // next steps: DODANIE FRAGMENTU Z REQUESTEM JAKIMS Z API LOKALNEGO
             // npm start z node_env production
             // NEXT GATLING
 

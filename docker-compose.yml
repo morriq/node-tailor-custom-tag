@@ -1,0 +1,9 @@
+version: '3'
+services:
+  offers:
+    image: clue/json-server
+    volumes:
+      - ./.offers-mock:/data
+    restart: always
+    ports:
+      - "59018:80"
