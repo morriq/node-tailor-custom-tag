@@ -26,15 +26,13 @@ module.exports = ({ isTemplateCached }) => {
             const stream = new RewritingStream();
             const library = tag.attributes.dependency;
 
-            render(library, request, (error, output) => {
-                if (output) {
-                    stream.emitRaw(output);
-                }
-                if (error) {
-                    console.error(error);
-                }
-                stream.end();
+            const markupStream = render(library, request);
+
+            markupStream.on('end', () => stream.end());
+            markupStream.on('error', (error) => {
+                console.error(error);
             });
+            markupStream.on('data',(markup) =>  stream.emitRaw(markup));
 
             return stream;
         },
