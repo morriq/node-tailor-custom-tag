@@ -24,7 +24,6 @@ module.exports = ({ isTemplateCached }) => {
                 return '';
             }
 
-            // @todo czesc kliencka babel runtime, externals zeby reacta nie ladowawc
             // @todo pactio
             // https://github.com/GrupaPracuj/GP.Kansas/compare/redefined?expand=1
 

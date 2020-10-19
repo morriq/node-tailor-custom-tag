@@ -1,8 +1,8 @@
-import bootstrapRecommendations from 'recommendations';
-import bootstrapHeader from 'header';
+import('recommendations')
+    .then(bootstrap => bootstrap());
 
-bootstrapRecommendations();
-bootstrapHeader();
+import('header')
+    .then(bootstrap => bootstrap());
 
 if (module.hot) {
     module.hot.accept();
