@@ -24,12 +24,10 @@ module.exports = ({ isTemplateCached }) => {
                 return '';
             }
 
-            // @TODO integration test
             // @todo czesc kliencka babel runtime, externals zeby reacta nie ladowawc
-            // @todo przekazywanie do rendera czesci z requesta, obsluga errorw
             // @todo pactio
             // https://github.com/GrupaPracuj/GP.Kansas/compare/redefined?expand=1
-            
+
             const stream = new RewritingStream();
             const library = tag.attributes.dependency;
 
@@ -38,7 +36,7 @@ module.exports = ({ isTemplateCached }) => {
                     stream.emitRaw(output);
                 }
                 if (error) {
-                    console.log(error);
+                    console.error(error);
                 }
                 stream.end();
             });

@@ -1,12 +1,6 @@
 import React from 'react';
 
-function Component(): JSX.Element {
-    let a = {};
-
-    if (typeof window !== 'undefined') {
-
-        console.log(a.b.c);
-    }
+function Component(): React.ReactElement {
     return <div>header</div>;
 }
 
