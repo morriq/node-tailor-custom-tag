@@ -24,8 +24,6 @@ module.exports = ({ isTemplateCached }) => {
                 return '';
             }
 
-            // index.html jest nadpisywany przez webpacka bo jest zdefiniowany w webpackclient
-            // @todo jesli jest devmode to webpackdevmiddleware
             // @TODO integration test
             // @todo czesc kliencka babel runtime, externals zeby reacta nie ladowawc
             // @todo przekazywanie do rendera czesci z requesta, obsluga errorw
