@@ -1,9 +1,8 @@
 const { resolve } = require('path');
 const { readFileSync } = require('fs');
 const RewritingStream = require('parse5-html-rewriting-stream');
-const workerFarm = require('worker-farm');
 
-const render = workerFarm(require.resolve('./render'));
+const render = require('./render.js');
 
 const loadTemplate = () => readFileSync(resolve(__dirname, '../../app/dist/index.html'), 'utf-8');
 
