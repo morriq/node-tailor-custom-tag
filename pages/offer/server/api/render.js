@@ -1,9 +1,9 @@
 const libraries = require('../libraries');
 
-module.exports = async (library, callback) => {
+module.exports = async (library, request, callback) => {
     const dependency = libraries.get(library)();
 
-    dependency.render()
+    dependency.render(request)
         .then(markup => callback(null, markup))
         .catch(error => callback(error, null));
 }

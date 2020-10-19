@@ -24,13 +24,10 @@ module.exports = ({ isTemplateCached }) => {
                 return '';
             }
 
-            // @todo pactio
-            // https://github.com/GrupaPracuj/GP.Kansas/compare/redefined?expand=1
-
             const stream = new RewritingStream();
             const library = tag.attributes.dependency;
 
-            render(library, (error, output) => {
+            render(library, request, (error, output) => {
                 if (output) {
                     stream.emitRaw(output);
                 }
