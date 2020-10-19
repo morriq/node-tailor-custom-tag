@@ -24,9 +24,6 @@ module.exports = ({ isTemplateCached }) => {
                 return '';
             }
 
-            // npm start z node_env production
-            // NEXT GATLING
-
             // index.html jest nadpisywany przez webpacka bo jest zdefiniowany w webpackclient
             // @todo jesli jest devmode to webpackdevmiddleware
             // @TODO integration test
