@@ -1,7 +1,5 @@
-const { Library } = require('../api/library');
+const streamResolver = require('header');
 
-class Header extends Library {
-    package = require('header');
-}
+const payloadResolver = (request) => Promise.resolve({});
 
-exports.Header = Header;
+module.exports = {streamResolver, payloadResolver};

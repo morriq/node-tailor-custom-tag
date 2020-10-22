@@ -2,7 +2,7 @@ const { resolve } = require('path');
 const { readFileSync } = require('fs');
 const RewritingStream = require('parse5-html-rewriting-stream');
 
-const render = require('./render.js');
+const libraries = require('../libraries');
 
 const loadTemplate = () => readFileSync(resolve(__dirname, '../../app/dist/index.html'), 'utf-8');
 
@@ -26,13 +26,21 @@ module.exports = ({ isTemplateCached }) => {
             const stream = new RewritingStream();
             const library = tag.attributes.dependency;
 
-            const markupStream = render(library, request);
+            const { payloadResolver, streamResolver } = libraries.get(library);
 
-            markupStream.on('end', () => stream.end());
-            markupStream.on('error', (error) => {
-                console.error(error);
-            });
-            markupStream.on('data',(markup) =>  stream.emitRaw(markup));
+            payloadResolver(request)
+                .then(payload => {
+                    const markupStream = streamResolver(payload);
+
+                    markupStream.on('end', () => stream.end());
+                    markupStream.on('error', (error) => {
+                        console.error(error);
+                    });
+                    markupStream.on('data',(markup) =>  stream.emitRaw(markup));
+                })
+                .catch(error => {
+                    console.log(error);
+                });
 
             return stream;
         },

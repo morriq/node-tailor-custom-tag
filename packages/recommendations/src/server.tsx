@@ -5,9 +5,7 @@ import StateContext from './contexts/StateContext';
 import App from './App';
 
 
-export default (payload) => () => {
-    const state = payload();
-
+export default (state) => {
     return renderToNodeStream(
         <StateContext.Provider value={state}>
             <div id='rec'>
