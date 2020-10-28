@@ -35,6 +35,7 @@ module.exports = ({ isTemplateCached }) => {
                     markupStream.on('end', () => stream.end());
                     markupStream.on('error', (error) => {
                         console.error(error);
+                        stream.end();
                     });
                     markupStream.on('data',(markup) =>  stream.emitRaw(markup));
                 })
